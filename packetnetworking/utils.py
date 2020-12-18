@@ -220,11 +220,6 @@ def resolvers(default):
 
 
 def get_interfaces():
-    subprocess.run(
-        "for nic in /sys/class/net/e*; do ip link set ${nic##*/} up; done",
-        shell=True,
-        check=True,
-    )
     # let udev discover the nics, some renaming may take place which is why we
     # don't store the discovered nics
     for nic in discover_nics(get_lshw_info()):
